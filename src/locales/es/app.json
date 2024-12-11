@@ -1,0 +1,16 @@
+{
+  "ok": "Aceptar",
+  "cancel": "Cancelar",
+  "validaciones": {
+    "requerido": "Campo requerido",
+    "minimo": "Mínimo de {n} caracteres",
+    "maximo": "Máximo de {n} caracteres",
+    "passwords_no_coinciden": "Las contraseñas no coinciden",
+    "password_pattern": "La contraseña no cumple con los requerimientos",
+    "password_confirm": "Las contraseñas no coinciden"
+  },
+  "mensajes": {
+    "error": "Se ha producido un error",
+    "error_guardando_nueva_contrasenya": "Se ha producido un error creando la nueva contraseña, contacte con el servicio de atención al usuario de la Universidad de Alicante"
+  }
+}

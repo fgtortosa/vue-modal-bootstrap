@@ -1,0 +1,17 @@
+{
+  "ok": "Ok",
+  "cancel": "Cancel",
+    "validaciones": {
+        "requerido": "Required field",
+        "minimo": "Minimum of {n} characters",
+        "maximo": "Maximum of {n} characters",
+        "passwords_no_coinciden": "Passwords do not match",
+        "password_pattern": "The password does not meet the requirements",
+        "password_confirm": "Passwords do not match",
+        "contrasena_cambiada_correctamente": "Password created successfully"
+      },
+      "mensajes": {
+        "error": "An error has occurred",
+        "error_guardando_nueva_contrasenya": "An error occurred creating the new password, please contact the University of Alicante user service"
+      }
+}

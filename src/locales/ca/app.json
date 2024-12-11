@@ -1,0 +1,16 @@
+{
+  "ok": "Aceptar",
+  "cancel": "Cancelar",
+    "validaciones": {
+        "requerido": "Camp requerit",
+        "minimo": "Mínim de {n} caràcters",
+        "maximo": "Màxim de {n} caràcters",
+        "passwords_no_coinciden": "Les contrasenyes no coincideixen",
+        "password_pattern": "La contrasenya no compleix els requisits",
+        "password_confirm": "Les contrasenyes no coincideixen"
+      },
+      "mensajes": {
+        "error": "S'ha produït un error",
+        "error_guardando_nueva_contrasenya": "S'ha produït un error creant la nova contrasenya, contacteu amb el servei d'atenció a l'usuari de la Universitat d'Alacant"
+      }
+}
