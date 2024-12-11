@@ -1,11 +1,21 @@
 <template>
+   <!-- Añadir backdrop separado -->
+   <div 
+    v-if="modelValue"
+    class="modal-backdrop fade show"
+  ></div>
+
   <div 
-    class="modal fade" 
-    :class="{ show: modelValue }" 
+  class="modal fade" 
+    :class="{ 
+      'show': modelValue,
+      'modal-static': props.required // Añadir esta clase
+    }" 
     :style="{ display: modelValue ? 'block' : 'none' }"
     tabindex="-1" 
     aria-hidden="true"
     @click.self="handleBackdropClick"
+    data-bs-backdrop="static"
   >
     <div class="modal-dialog modal-xl modal-dialog-centered">
       <div class="modal-content">
@@ -83,3 +93,9 @@ const confirmModal = () => {
   emit('confirm')
 }
 </script>
+
+<style scoped>
+.modal-static {
+  transform: none !important;
+}
+</style>
