@@ -167,9 +167,9 @@ const handleClose = (trigger) => {
 
 ## Instalación
 
-1. Asegúrese de tener Vue 3 y Bootstrap instalados
-2. Importe los componentes como se muestra en los ejemplos
-3. Utilícelos en su aplicación Vue 3
+1. Ejecuta pnpm install, te instalará todas las dependencias
+2. Para probar el ejemplo ejecuta la aplicación con pnpm run dev
+
 
 ## Dependencias
 - Vue 3
