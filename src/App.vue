@@ -1,6 +1,6 @@
 <template>
   <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
-    <BModal v-model="isModalVisible" :required="false" :cancelText="t('cancel')" :confirmText="t('ok')" @close="handleClose"
+    <BModal v-model="isModalVisible" :required="false"  @close="handleClose"
       @confirm="handleConfirm">
       <template #header>
         {{ t('modal.confirmar_accion') }}
