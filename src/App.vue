@@ -12,8 +12,8 @@
       </template>
 
       <template #buttons="{ close, confirm }">
-        <button @click="close" class="btn btn-secondary">Cancelar Personalizado</button>
-        <button @click="confirm" class="btn btn-primary">Confirmar Personalizado</button>
+        <button @click="close" class="btn btn-secondary">Cancelar</button>
+        <button @click="confirm" class="btn btn-primary">Confirmar</button>
       </template>
     </BModal>
 
