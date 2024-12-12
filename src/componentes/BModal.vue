@@ -1,5 +1,4 @@
 <template>
-  <!-- Backdrop with improved accessibility -->
   <div 
       v-if="modelValue"
       class="modal-backdrop fade show"
