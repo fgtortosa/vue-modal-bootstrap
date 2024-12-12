@@ -1,21 +1,20 @@
 import { createI18n } from 'vue-i18n'
 
 import appEsMessages from '/home/pgarcia/code/vueua-componentes-ejemplo/src/locales/es/app.json';
-// import plantillasEsMessages from 'vueua-plantilla-uacloud/locales/es/plantilla.json';
-
 import appCaMessages from '/home/pgarcia/code/vueua-componentes-ejemplo/src/locales/ca/app.json';
-//import plantillasCaMessages from 'vueua-plantilla-uacloud/locales/ca/plantilla.json';
-
 import appEnMessages from '/home/pgarcia/code/vueua-componentes-ejemplo/src/locales/en/app.json';
-//import plantillasEnMessages from 'vueua-plantilla-uacloud/locales/en/plantilla.json';
 
-// Detectar el idioma del usuario
-const elapp = document.getElementById('app');
-const persona = elapp?.dataset.usuario ?? '';
+// Detectar el idioma del navegador
+const getBrowserLanguage = (): string => {
+    const browserLang = navigator.language.split('-')[0]; // Obtiene 'es' de 'es-ES'
+    const supportedLanguages = ['es', 'ca', 'en'];
+    
+    return supportedLanguages.includes(browserLang) ? browserLang : 'es';
+  }
 
-let idioma = 'es'
 
-idioma = (persona && JSON.parse(persona).Idioma) ?? 'es'
+let idioma = getBrowserLanguage();
+
 
 export const fallbackLocale = "es";
 

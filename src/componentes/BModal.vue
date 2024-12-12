@@ -58,14 +58,14 @@
                           class="btn btn-secondary"
                           @click="closeModal('cancel')"
                       >
-                          {{ props.cancelText || 'Cancelar' }}
+                          {{ props.cancelText || t('cancel') }}
                       </button>
                       <button
                           type="button"
                           class="btn btn-primary"
                           @click="confirmModal"
                       >
-                          {{ props.confirmText || 'Aceptar' }}
+                          {{ props.confirmText || t('ok') }}
                       </button>
                   </slot>
               </div>
@@ -76,6 +76,11 @@
 
 <script setup lang="ts">
 import { withDefaults, defineEmits, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({
+  inheritLocale: true
+})
 
 const modelValue = defineModel<boolean>({ default: false })
 
@@ -155,3 +160,20 @@ const confirmModal = () => {
   transform: none !important;
 }
 </style>
+
+<i18n>
+  {
+      "es": {
+          "ok": "Aceptar",
+          "cancel": "Cancelar",
+      },
+      "ca": {
+          "ok": "Acceptar",
+          "cancel": "Cancel·lar",
+      },
+      "en": {
+          "ok": "Ok",
+          "cancel": "Cancel",
+      }
+  }
+  </i18n>

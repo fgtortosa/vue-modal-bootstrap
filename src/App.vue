@@ -1,40 +1,33 @@
 <template>
   <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
-    <!-- Primera modal (existente) -->
-    <BModal v-model="isModalVisible" :required="true" cancelText="No" confirmText="Sí" @close="handleClose"
+    <BModal v-model="isModalVisible" :required="false" :cancelText="t('cancel')" :confirmText="t('ok')" @close="handleClose"
       @confirm="handleConfirm">
       <template #header>
-        Confirmar Acción
+        {{ t('modal.confirmar_accion') }}
       </template>
 
       <template #body>
-        ¿Está seguro de que desea continuar?
-      </template>
-
-      <template #buttons="{ close, confirm }">
-        <button @click="close" class="btn btn-secondary">Cancelar</button>
-        <button @click="confirm" class="btn btn-primary">Confirmar</button>
+        {{ t('modal.esta_seguro') }}
       </template>
     </BModal>
 
-    <!-- Segunda modal (nueva) -->
     <DialogModal ref="dialogModal">
       <template #header>
-        Formulario de Usuario
+        {{ t('modal.formulario_usuario') }}
       </template>
 
       <template #body>
         <form id="userForm">
           <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
+            <label for="nombre" class="form-label">{{ t('modal.nombre') }}</label>
             <input type="text" class="form-control" id="nombre" v-model="formData.nombre">
           </div>
           <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
+            <label for="email" class="form-label">{{ t('modal.email') }}</label>
             <input type="email" class="form-control" id="email" v-model="formData.email">
           </div>
           <div class="mb-3">
-            <label for="telefono" class="form-label">Teléfono</label>
+            <label for="telefono" class="form-label">{{ t('modal.telefono') }}</label>
             <input type="tel" class="form-control" id="telefono" v-model="formData.telefono">
           </div>
         </form>
@@ -42,8 +35,8 @@
     </DialogModal>
 
     <div class="d-flex gap-3">
-      <button class="btn btn-primary mb-3" @click="isModalVisible = true">Abrir Modal Simple</button>
-      <button class="btn btn-success mb-3" @click="abrirDialogModal">Abrir Modal con Formulario</button>
+      <button class="btn btn-primary mb-3" @click="isModalVisible = true">{{ t('modal.abrir_modal_simple') }}</button>
+      <button class="btn btn-success mb-3" @click="abrirDialogModal">{{ t('modal.abrir_modal_formulario') }}</button>
     </div>
   </div>
 </template>
@@ -52,6 +45,11 @@
 import { ref } from 'vue'
 import BModal from './componentes/BModal.vue'
 import DialogModal from './componentes/DialogModal.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({
+  inheritLocale: true
+})
 
 const isModalVisible = ref(false)
 const dialogModal = ref(null)
