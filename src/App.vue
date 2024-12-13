@@ -1,3 +1,37 @@
+<script setup type="ts">
+import { ref } from 'vue'
+import BModal from './componentes/BModal.vue'
+import DialogModal from './componentes/DialogModal.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({
+  inheritLocale: true
+})
+
+const isModalVisible = ref(false)
+const dialogModal = ref(null)
+const formData = ref({
+  nombre: '',
+  email: '',
+  telefono: ''
+})
+
+const handleClose = (trigger) => {
+  console.log(`Modal cerrado por: ${trigger}`)
+}
+
+const handleConfirm = () => {
+  console.log('Acción confirmada')
+}
+
+const abrirDialogModal = async () => {
+  const resultado = await dialogModal.value.show('userForm')
+  if (resultado) {
+    console.log('Formulario enviado:', formData.value)
+  }
+}
+</script>
+
 <template>
   <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
     <BModal v-model="isModalVisible" :required="false"  @close="handleClose"
@@ -40,37 +74,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-import BModal from './componentes/BModal.vue'
-import DialogModal from './componentes/DialogModal.vue'
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n({
-  inheritLocale: true
-})
-
-const isModalVisible = ref(false)
-const dialogModal = ref(null)
-const formData = ref({
-  nombre: '',
-  email: '',
-  telefono: ''
-})
-
-const handleClose = (trigger) => {
-  console.log(`Modal cerrado por: ${trigger}`)
-}
-
-const handleConfirm = () => {
-  console.log('Acción confirmada')
-}
-
-const abrirDialogModal = async () => {
-  const resultado = await dialogModal.value.show('userForm')
-  if (resultado) {
-    console.log('Formulario enviado:', formData.value)
-  }
-}
-</script>
