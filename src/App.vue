@@ -53,7 +53,7 @@ const isSubmitting = ref(false);
           </div>
 
           <h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">
-            <span>Componentes</span>
+            <span>{{ t("components.title") }}</span>
           </h6>
           <ul class="nav flex-column">
             <li class="nav-item">
@@ -74,13 +74,13 @@ const isSubmitting = ref(false);
 
           <!-- Botones básicos -->
           <div class="mb-4">
-            <h4 class="h5 mb-3">Botones básicos</h4>
+            <h4 class="h5 mb-3">{{ t("components.buttons.basic.title") }}</h4>
             <div class="row g-3">
               <div class="col-auto">
-                <BButton>Click me</BButton>
+                <BButton>{{ t("components.buttons.basic.click_me") }}</BButton>
               </div>
               <div class="col-auto">
-                <BButton label="Click me" />
+                <BButton :label="t('components.buttons.basic.click_me')" />
               </div>
             </div>
           </div>
@@ -90,51 +90,71 @@ const isSubmitting = ref(false);
             <h4 class="h5 mb-3">Variantes</h4>
             <div class="row g-3">
               <div class="col-auto">
-                <BButton variant="primary">Primary</BButton>
+                <BButton variant="primary">{{
+                  t("components.buttons.variants.title")
+                }}</BButton>
               </div>
               <div class="col-auto">
-                <BButton variant="secondary">Secondary</BButton>
+                <BButton variant="secondary">{{
+                  t("components.buttons.variants.primary")
+                }}</BButton>
               </div>
               <div class="col-auto">
-                <BButton variant="success">Success</BButton>
+                <BButton variant="success">{{
+                  t("components.buttons.variants.secondary")
+                }}</BButton>
               </div>
               <div class="col-auto">
-                <BButton variant="danger">Danger</BButton>
+                <BButton variant="danger">{{
+                  t("components.buttons.variants.danger")
+                }}</BButton>
               </div>
               <div class="col-auto">
-                <BButton variant="warning">Warning</BButton>
+                <BButton variant="warning">{{
+                  t("components.buttons.variants.warning")
+                }}</BButton>
               </div>
               <div class="col-auto">
-                <BButton variant="info">Info</BButton>
+                <BButton variant="info">{{
+                  t("components.buttons.variants.info")
+                }}</BButton>
               </div>
             </div>
           </div>
 
           <!-- Tamaños -->
           <div class="mb-4">
-            <h4 class="h5 mb-3">Tamaños</h4>
+            <h4 class="h5 mb-3">{{ t("components.buttons.sizes.title") }}</h4>
             <div class="row g-3 align-items-center">
               <div class="col-auto">
-                <BButton size="sm">Small</BButton>
+                <BButton size="sm">{{
+                  t("components.buttons.sizes.small")
+                }}</BButton>
               </div>
               <div class="col-auto">
-                <BButton>Default</BButton>
+                <BButton>{{ t("components.buttons.sizes.default") }}</BButton>
               </div>
               <div class="col-auto">
-                <BButton size="lg">Large</BButton>
+                <BButton size="lg">{{
+                  t("components.buttons.sizes.large")
+                }}</BButton>
               </div>
             </div>
           </div>
 
           <!-- Con iconos -->
           <div class="mb-4">
-            <h4 class="h5 mb-3">Con iconos</h4>
+            <h4 class="h5 mb-3">{{ t("components.buttons.icons.title") }}</h4>
             <div class="row g-3">
               <div class="col-auto">
-                <BButton icon="bi-hand-thumbs-up">Like</BButton>
+                <BButton icon="bi-hand-thumbs-up">{{
+                  t("components.buttons.icons.like")
+                }}</BButton>
               </div>
               <div class="col-auto">
-                <BButton icon="bi-heart" variant="danger">Love</BButton>
+                <BButton icon="bi-heart" variant="danger">{{
+                  t("components.buttons.icons.love")
+                }}</BButton>
               </div>
               <div class="col-auto">
                 <BButton icon="bi-check-circle" variant="success"
@@ -149,13 +169,17 @@ const isSubmitting = ref(false);
 
           <!-- Estados -->
           <div class="mb-4">
-            <h4 class="h5 mb-3">Estados</h4>
+            <h4 class="h5 mb-3">{{ t("components.buttons.states.title") }}</h4>
             <div class="row g-3">
               <div class="col-auto">
-                <BButton disabled>Disabled</BButton>
+                <BButton disabled>{{
+                  t("components.buttons.states.disabled")
+                }}</BButton>
               </div>
               <div class="col-auto">
-                <BButton type="submit" variant="primary">Submit</BButton>
+                <BButton type="submit" variant="primary">{{
+                  t("components.buttons.states.submit")
+                }}</BButton>
               </div>
             </div>
           </div>
