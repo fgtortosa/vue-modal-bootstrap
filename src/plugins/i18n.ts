@@ -1,8 +1,8 @@
 import { createI18n } from 'vue-i18n'
 
-import appEsMessages from '/home/pgarcia/code/vueua-componentes-ejemplo/src/locales/es/app.json';
-import appCaMessages from '/home/pgarcia/code/vueua-componentes-ejemplo/src/locales/ca/app.json';
-import appEnMessages from '/home/pgarcia/code/vueua-componentes-ejemplo/src/locales/en/app.json';
+import appEsMessages from '@/locales/es/app.json';
+import appCaMessages from '@/locales/ca/app.json';
+import appEnMessages from '@/locales/en/app.json';
 
 // Detectar el idioma del navegador
 const getBrowserLanguage = (): string => {

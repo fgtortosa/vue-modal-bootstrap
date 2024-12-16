@@ -1,76 +1,391 @@
-<script setup type="ts">
-import { ref } from 'vue'
-import BModal from './componentes/BModal.vue'
-import DialogModal from './componentes/DialogModal.vue'
-import { useI18n } from 'vue-i18n'
+<script setup lang="ts">
+import { ref } from "vue";
+import ThemeSwitcher from "./componentes/ThemeSwitcher.vue";
+import BModal from "./componentes/BModal.vue";
+import BButton from "./componentes/BButton.vue";
+import DialogModal from "./componentes/DialogModal.vue";
+import { useI18n } from "vue-i18n";
 
 const { t } = useI18n({
-  inheritLocale: true
-})
+  inheritLocale: true,
+});
 
-const isModalVisible = ref(false)
-const dialogModal = ref(null)
+const isModalVisibleDark = ref(false);
+const isModalVisible = ref(false);
+const dialogModal = ref(null);
 const formData = ref({
-  nombre: '',
-  email: '',
-  telefono: ''
-})
+  nombre: "",
+  email: "",
+  telefono: "",
+});
 
 const handleClose = (trigger) => {
-  console.log(`Modal cerrado por: ${trigger}`)
-}
+  console.log(`Modal cerrado por: ${trigger}`);
+};
 
 const handleConfirm = () => {
-  console.log('Acción confirmada')
-}
+  console.log("Acción confirmada");
+};
+
+const handleClick = () => {
+  console.log("Botón clickeado");
+};
 
 const abrirDialogModal = async () => {
-  const resultado = await dialogModal.value.show('userForm')
+  const resultado = await dialogModal.value.show("userForm");
   if (resultado) {
-    console.log('Formulario enviado:', formData.value)
+    console.log("Formulario enviado:", formData.value);
   }
-}
+};
+
+const isSubmitting = ref(false);
 </script>
 
 <template>
-  <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
-    <BModal v-model="isModalVisible" :required="false"  @close="handleClose"
-      @confirm="handleConfirm">
-      <template #header>
-        {{ t('modal.confirmar_accion') }}
-      </template>
-
-      <template #body>
-        {{ t('modal.esta_seguro') }}
-      </template>
-    </BModal>
-
-    <DialogModal ref="dialogModal">
-      <template #header>
-        {{ t('modal.formulario_usuario') }}
-      </template>
-
-      <template #body>
-        <form id="userForm">
-          <div class="mb-3">
-            <label for="nombre" class="form-label">{{ t('modal.nombre') }}</label>
-            <input type="text" class="form-control" id="nombre" v-model="formData.nombre">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Panel izquierdo -->
+      <div class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3">
+          <!-- ThemeSwitcher -->
+          <div class="px-3 mb-3">
+            <ThemeSwitcher />
           </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">{{ t('modal.email') }}</label>
-            <input type="email" class="form-control" id="email" v-model="formData.email">
-          </div>
-          <div class="mb-3">
-            <label for="telefono" class="form-label">{{ t('modal.telefono') }}</label>
-            <input type="tel" class="form-control" id="telefono" v-model="formData.telefono">
-          </div>
-        </form>
-      </template>
-    </DialogModal>
 
-    <div class="d-flex gap-3">
-      <button class="btn btn-primary mb-3" @click="isModalVisible = true">{{ t('modal.abrir_modal_simple') }}</button>
-      <button class="btn btn-success mb-3" @click="abrirDialogModal">{{ t('modal.abrir_modal_formulario') }}</button>
+          <h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">
+            <span>Componentes</span>
+          </h6>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="#buttons-section">BButton</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#modals-section">BModal</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Contenido principal -->
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <!-- Sección de Botones -->
+        <section id="buttons-section" class="py-5">
+          <h2>BButton Examples</h2>
+
+          <!-- Botones básicos -->
+          <div class="mb-4">
+            <h4 class="h5 mb-3">Botones básicos</h4>
+            <div class="row g-3">
+              <div class="col-auto">
+                <BButton>Click me</BButton>
+              </div>
+              <div class="col-auto">
+                <BButton label="Click me" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Variantes -->
+          <div class="mb-4">
+            <h4 class="h5 mb-3">Variantes</h4>
+            <div class="row g-3">
+              <div class="col-auto">
+                <BButton variant="primary">Primary</BButton>
+              </div>
+              <div class="col-auto">
+                <BButton variant="secondary">Secondary</BButton>
+              </div>
+              <div class="col-auto">
+                <BButton variant="success">Success</BButton>
+              </div>
+              <div class="col-auto">
+                <BButton variant="danger">Danger</BButton>
+              </div>
+              <div class="col-auto">
+                <BButton variant="warning">Warning</BButton>
+              </div>
+              <div class="col-auto">
+                <BButton variant="info">Info</BButton>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tamaños -->
+          <div class="mb-4">
+            <h4 class="h5 mb-3">Tamaños</h4>
+            <div class="row g-3 align-items-center">
+              <div class="col-auto">
+                <BButton size="sm">Small</BButton>
+              </div>
+              <div class="col-auto">
+                <BButton>Default</BButton>
+              </div>
+              <div class="col-auto">
+                <BButton size="lg">Large</BButton>
+              </div>
+            </div>
+          </div>
+
+          <!-- Con iconos -->
+          <div class="mb-4">
+            <h4 class="h5 mb-3">Con iconos</h4>
+            <div class="row g-3">
+              <div class="col-auto">
+                <BButton icon="bi-hand-thumbs-up">Like</BButton>
+              </div>
+              <div class="col-auto">
+                <BButton icon="bi-heart" variant="danger">Love</BButton>
+              </div>
+              <div class="col-auto">
+                <BButton icon="bi-check-circle" variant="success"
+                  >Confirm</BButton
+                >
+              </div>
+              <div class="col-auto">
+                <BButton icon="bi-trash" variant="danger">Delete</BButton>
+              </div>
+            </div>
+          </div>
+
+          <!-- Estados -->
+          <div class="mb-4">
+            <h4 class="h5 mb-3">Estados</h4>
+            <div class="row g-3">
+              <div class="col-auto">
+                <BButton disabled>Disabled</BButton>
+              </div>
+              <div class="col-auto">
+                <BButton type="submit" variant="primary">Submit</BButton>
+              </div>
+            </div>
+          </div>
+          <!-- Botones Claros y Oscuros -->
+          <div class="mb-4">
+            <h4 class="h5 mb-3">Botones Claros y Oscuros</h4>
+            <div class="row g-3">
+              <!-- Botones Claros -->
+              <div class="col-12 mb-3">
+                <h5 class="h6 mb-3">Botones Claros</h5>
+                <div class="d-flex gap-2">
+                  <BButton variant="light" class="border">
+                    <i class="bi bi-check-lg me-2"></i>
+                    Aceptar
+                  </BButton>
+                  <BButton variant="light" class="border">
+                    <i class="bi bi-x-lg me-2"></i>
+                    Cancelar
+                  </BButton>
+                </div>
+              </div>
+
+              <!-- Botones Oscuros -->
+              <div class="col-12">
+                <h5 class="h6 mb-3">Botones Oscuros</h5>
+                <div class="d-flex gap-2">
+                  <BButton variant="dark">
+                    <i class="bi bi-check-lg me-2"></i>
+                    Aceptar
+                  </BButton>
+                  <BButton variant="dark">
+                    <i class="bi bi-x-lg me-2"></i>
+                    Cancelar
+                  </BButton>
+                </div>
+              </div>
+
+              <!-- Botones Outline -->
+              <div class="col-12">
+                <h5 class="h6 mb-3">Botones Outline</h5>
+                <div class="d-flex gap-2">
+                  <BButton class="btn-outline-dark border">
+                    <i class="bi bi-check-lg me-2"></i>
+                    Aceptar
+                  </BButton>
+                  <BButton class="btn-outline-dark border">
+                    <i class="bi bi-x-lg me-2"></i>
+                    Cancelar
+                  </BButton>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sección de Modales -->
+        <!-- Sección de Modales en App.vue -->
+        <section id="modals-section" class="py-5">
+          <h2>Modal Examples</h2>
+
+          <!-- Modal con tema monocromático -->
+          <div class="mb-5">
+            <h4 class="h5 mb-3">Modal Monocromático</h4>
+            <BModal
+              v-model="isModalVisible"
+              :required="false"
+              @close="handleClose"
+              @confirm="handleConfirm"
+            >
+              <template #header>
+                {{ t("modal.confirmar_accion") }}
+              </template>
+
+              <template #body>
+                {{ t("modal.esta_seguro") }}
+              </template>
+
+              <template #buttons="{ close, confirm }">
+                <BButton variant="light" class="border me-2" @click="close">
+                  <i class="bi bi-x-lg me-2"></i>
+                  {{ t("cancel") }}
+                </BButton>
+                <BButton variant="dark" @click="confirm">
+                  <i class="bi bi-check-lg me-2"></i>
+                  {{ t("ok") }}
+                </BButton>
+              </template>
+            </BModal>
+
+            <BButton variant="dark" @click="isModalVisible = true">
+              {{ t("modal.abrir_modal_simple") }}
+            </BButton>
+          </div>
+
+          <!-- Modal con colores Bootstrap -->
+          <div class="mb-5">
+            <h4 class="h5 mb-3">Modal con Colores Bootstrap</h4>
+            <DialogModal ref="dialogModal">
+              <template #header>
+                {{ t("modal.formulario_usuario") }}
+              </template>
+
+              <template #body>
+                <form id="userForm">
+                  <div class="mb-3">
+                    <label for="nombre" class="form-label">
+                      {{ t("modal.nombre") }}
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nombre"
+                      v-model="formData.nombre"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">
+                      {{ t("modal.email") }}
+                    </label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      v-model="formData.email"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="telefono" class="form-label">
+                      {{ t("modal.telefono") }}
+                    </label>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      id="telefono"
+                      v-model="formData.telefono"
+                    />
+                  </div>
+                </form>
+              </template>
+
+              <template #buttons="{ close, confirm }">
+                <BButton variant="secondary" class="me-2" @click="close">
+                  <i class="bi bi-x-lg me-2"></i>
+                  {{ t("cancel") }}
+                </BButton>
+                <BButton variant="primary" @click="confirm">
+                  <i class="bi bi-check-lg me-2"></i>
+                  {{ t("ok") }}
+                </BButton>
+              </template>
+            </DialogModal>
+
+            <BButton variant="primary" @click="abrirDialogModal">
+              {{ t("modal.abrir_modal_formulario") }}
+            </BButton>
+          </div>
+
+          <!-- Ejemplo de Modal en tema oscuro -->
+          <div class="mb-5 p-4 bg-dark rounded" data-bs-theme="dark">
+            <h4 class="h5 mb-3 text-light">Modal en Tema Oscuro</h4>
+            <BModal
+              v-model="isModalVisibleDark"
+              :required="false"
+              @close="handleClose"
+              @confirm="handleConfirm"
+            >
+              <template #header>
+                {{ t("modal.confirmar_accion") }}
+              </template>
+
+              <template #body>
+                {{ t("modal.esta_seguro") }}
+              </template>
+
+              <template #buttons="{ close, confirm }">
+                <BButton variant="dark" class="me-2" @click="close">
+                  <i class="bi bi-x-lg me-2"></i>
+                  {{ t("cancel") }}
+                </BButton>
+                <BButton variant="light" class="border" @click="confirm">
+                  <i class="bi bi-check-lg me-2"></i>
+                  {{ t("ok") }}
+                </BButton>
+              </template>
+            </BModal>
+
+            <BButton
+              variant="light"
+              class="border"
+              @click="isModalVisibleDark = true"
+            >
+              {{ t("modal.abrir_modal_simple") }}
+            </BButton>
+          </div>
+        </section>
+      </main>
     </div>
   </div>
 </template>
+
+<style scoped>
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  padding: 48px 0 0;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-heading {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: #333;
+}
+
+.nav-link:hover {
+  color: #0d6efd;
+}
+
+main {
+  padding-top: 1.5rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+</style>

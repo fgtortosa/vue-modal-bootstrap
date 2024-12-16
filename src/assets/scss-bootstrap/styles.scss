@@ -1,1 +1,31 @@
-@import '/node_modules/bootstrap/scss/bootstrap.scss';
+:root {
+  --bs-body-color: #212529;
+  --bs-body-bg: #fff;
+}
+
+[data-bs-theme="dark"] {
+  --bs-body-color: #dee2e6;
+  --bs-body-bg: #212529;
+}
+
+// Importar Bootstrap
+@import "/node_modules/bootstrap/scss/bootstrap.scss";
+
+// Estilos adicionales para el tema oscuro
+[data-bs-theme="dark"] {
+  .sidebar {
+    background-color: #343a40 !important;
+  }
+
+  .nav-link {
+    color: #dee2e6;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .sidebar-heading {
+    color: #adb5bd !important;
+  }
+}
