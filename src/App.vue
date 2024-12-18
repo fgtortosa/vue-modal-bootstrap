@@ -10,16 +10,21 @@ const { t } = useI18n({
   inheritLocale: true,
 });
 
+// Interfaz ModalType
+interface ModalType {
+  show: (formId?: string) => Promise<boolean>;
+}
+
 const isModalVisibleDark = ref(false);
 const isModalVisible = ref(false);
-const dialogModal = ref(null);
+const dialogModal = ref<ModalType | null>(null);
 const formData = ref({
   nombre: "",
   email: "",
   telefono: "",
 });
 
-const handleClose = (trigger) => {
+const handleClose = (trigger: any) => {
   console.log(`Modal cerrado por: ${trigger}`);
 };
 
@@ -27,18 +32,14 @@ const handleConfirm = () => {
   console.log("Acción confirmada");
 };
 
-const handleClick = () => {
-  console.log("Botón clickeado");
-};
-
 const abrirDialogModal = async () => {
-  const resultado = await dialogModal.value.show("userForm");
+  const resultado = await dialogModal.value?.show("userForm");
   if (resultado) {
     console.log("Formulario enviado:", formData.value);
   }
 };
 
-const isSubmitting = ref(false);
+// const isSubmitting = ref(false);
 </script>
 
 <template>
@@ -157,12 +158,14 @@ const isSubmitting = ref(false);
                 }}</BButton>
               </div>
               <div class="col-auto">
-                <BButton icon="bi-check-circle" variant="success"
-                  >Confirm</BButton
-                >
+                <BButton icon="bi-check-circle" variant="success">{{
+                  t("components.buttons.icons.confirm")
+                }}</BButton>
               </div>
               <div class="col-auto">
-                <BButton icon="bi-trash" variant="danger">Delete</BButton>
+                <BButton icon="bi-trash" variant="danger">{{
+                  t("components.buttons.icons.delete")
+                }}</BButton>
               </div>
             </div>
           </div>
@@ -185,49 +188,52 @@ const isSubmitting = ref(false);
           </div>
           <!-- Botones Claros y Oscuros -->
           <div class="mb-4">
-            <h4 class="h5 mb-3">Botones Claros y Oscuros</h4>
+            <h4 class="h5 mb-3">{{ t("components.buttons.themes.title") }}</h4>
             <div class="row g-3">
               <!-- Botones Claros -->
               <div class="col-12 mb-3">
-                <h5 class="h6 mb-3">Botones Claros</h5>
+                <h5 class="h6 mb-3">
+                  {{ t("components.buttons.themes.light") }}
+                </h5>
                 <div class="d-flex gap-2">
-                  <BButton variant="light" class="border">
-                    <i class="bi bi-check-lg me-2"></i>
-                    Aceptar
+                  <BButton variant="light" class="border" icon="bi-check-lg">
+                    {{ t("ok") }}
                   </BButton>
-                  <BButton variant="light" class="border">
-                    <i class="bi bi-x-lg me-2"></i>
-                    Cancelar
+                  <BButton variant="light" class="border" icon="bi-x-lg">
+                    {{ t("cancel") }}
                   </BButton>
                 </div>
               </div>
 
               <!-- Botones Oscuros -->
               <div class="col-12">
-                <h5 class="h6 mb-3">Botones Oscuros</h5>
+                <h5 class="h6 mb-3">
+                  {{ t("components.buttons.themes.dark") }}
+                </h5>
                 <div class="d-flex gap-2">
-                  <BButton variant="dark">
-                    <i class="bi bi-check-lg me-2"></i>
-                    Aceptar
+                  <BButton variant="dark" icon="bi-check-lg">
+                    {{ t("ok") }}
                   </BButton>
-                  <BButton variant="dark">
-                    <i class="bi bi-x-lg me-2"></i>
-                    Cancelar
+                  <BButton variant="dark" icon="bi-x-lg">
+                    {{ t("cancel") }}
                   </BButton>
                 </div>
               </div>
 
               <!-- Botones Outline -->
               <div class="col-12">
-                <h5 class="h6 mb-3">Botones Outline</h5>
+                <h5 class="h6 mb-3">
+                  {{ t("components.buttons.outline.title") }}
+                </h5>
                 <div class="d-flex gap-2">
-                  <BButton class="btn-outline-dark border">
-                    <i class="bi bi-check-lg me-2"></i>
-                    Aceptar
+                  <BButton class="btn-outline-dark border" icon="bi-check-lg">
+                    {{ t("ok") }}
                   </BButton>
-                  <BButton class="btn-outline-dark border">
-                    <i class="bi bi-x-lg me-2"></i>
-                    Cancelar
+                  <BButton
+                    class="btn-secondary btn-outline-dark border"
+                    icon="bi-x-lg"
+                  >
+                    {{ t("cancel") }}
                   </BButton>
                 </div>
               </div>
@@ -258,12 +264,15 @@ const isSubmitting = ref(false);
               </template>
 
               <template #buttons="{ close, confirm }">
-                <BButton variant="light" class="border me-2" @click="close">
-                  <i class="bi bi-x-lg me-2"></i>
+                <BButton
+                  variant="light"
+                  class="border me-2"
+                  icon="bi-x-lg"
+                  @click="close"
+                >
                   {{ t("cancel") }}
                 </BButton>
-                <BButton variant="dark" @click="confirm">
-                  <i class="bi bi-check-lg me-2"></i>
+                <BButton variant="dark" icon="bi-check-lg" @click="confirm">
                   {{ t("ok") }}
                 </BButton>
               </template>
@@ -321,12 +330,15 @@ const isSubmitting = ref(false);
               </template>
 
               <template #buttons="{ close, confirm }">
-                <BButton variant="secondary" class="me-2" @click="close">
-                  <i class="bi bi-x-lg me-2"></i>
+                <BButton
+                  variant="secondary"
+                  class="me-2"
+                  icon="bi-x-lg"
+                  @click="close"
+                >
                   {{ t("cancel") }}
                 </BButton>
-                <BButton variant="primary" @click="confirm">
-                  <i class="bi bi-check-lg me-2"></i>
+                <BButton variant="primary" icon="bi-check-lg" @click="confirm">
                   {{ t("ok") }}
                 </BButton>
               </template>
@@ -355,12 +367,20 @@ const isSubmitting = ref(false);
               </template>
 
               <template #buttons="{ close, confirm }">
-                <BButton variant="dark" class="me-2" @click="close">
-                  <i class="bi bi-x-lg me-2"></i>
+                <BButton
+                  variant="dark"
+                  class="me-2"
+                  icon="bi-x-lg"
+                  @click="close"
+                >
                   {{ t("cancel") }}
                 </BButton>
-                <BButton variant="light" class="border" @click="confirm">
-                  <i class="bi bi-check-lg me-2"></i>
+                <BButton
+                  variant="light"
+                  class="border"
+                  icon="bi-check-lg"
+                  @click="confirm"
+                >
                   {{ t("ok") }}
                 </BButton>
               </template>

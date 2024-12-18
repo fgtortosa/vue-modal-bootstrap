@@ -1,6 +1,50 @@
 {
   "ok": "Aceptar",
   "cancel": "Cancelar",
+  "components": {
+    "title": "Componentes",
+    "buttons": {
+      "basic": {
+        "title": "Botones Básicos",
+        "click_me": "Haz clic"
+      },
+      "variants": {
+        "title": "Primario",
+        "primary": "Secundario",
+        "secondary": "Éxito",
+        "danger": "Peligro",
+        "warning": "Advertencia",
+        "info": "Información"
+      },
+      "sizes": {
+        "title": "Tamaños",
+        "small": "Pequeño",
+        "default": "Normal",
+        "large": "Grande"
+      },
+      "icons": {
+        "title": "Botones con Iconos",
+        "like": "Me gusta",
+        "love": "Me encanta",
+        "confirm": "Confirmar",
+        "delete": "Eliminar"
+      },
+      "states": {
+        "title": "Estados",
+        "disabled": "Deshabilitado",
+        "submit": "Enviar"
+      },
+      "themes": {
+        "title": "Botones claros y oscuros",
+        "light": "Tema Claro",
+        "dark": "Tema oscuro"
+      },
+      "outline": {
+        "title": "Botones con Bordes",
+        "outline": "Borde"
+      }
+    }
+  },
   "modal": {
     "confirmar_accion": "Confirmar Acción",
     "esta_seguro": "¿Está seguro de que desea continuar?",
